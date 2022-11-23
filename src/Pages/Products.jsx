@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 import { request } from 'graphql-request';
+import Product from '../Components/Product';
 
 const Products = () => {
 	const [products, setProducts] = useState([]);
@@ -45,18 +47,7 @@ const Products = () => {
 			</div>
 			<div className="cocktails-container">
 				{products.map((product) => (
-					<div key={product.id} className="cocktail-card">
-						<img src={product.image.url} alt="" className="cocktail-img" />
-						<div className="cocktail-info">
-							<div className="content-text">
-								<h2 className="cocktail-name">{product.name}</h2>
-								<span className="info">{product.info}</span>
-							</div>
-							<Link to={`/products/${product.slug}`}>
-								<div className="btn">View Details</div>
-							</Link>
-						</div>
-					</div>
+					<Product key={product.id} product={product} />
 				))}
 			</div>
 		</div>
